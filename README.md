@@ -1,10 +1,29 @@
 # typescript-vue-learning
 TypeScript &amp; Vue JS カリキュラム
 
-## TypeScript とは
-### JavaScriptとの関係
+## 1回目 
+・TypeScriptで開発するメリット
+・環境構築
 
-### TypeScriptの書き方
-* [変数]()
-  * [変数の参考資料](https://future-architect.github.io/typescript-guide/variable.html)
-  * 
+## 2回目 前半
+・組み込み型
+・型定義
+
+## 2回目 後
+・関数
+
+## 3回目 前半
+・クラス
+・インターフェイス
+
+## 3回目 後半
+・復習（今回の復習は何をさせるか）
+
+## ４回目 前半
+・非同期処理
+・例外処理
+
+## 4回目 後半
+・モジュール
+
+## 5日目
