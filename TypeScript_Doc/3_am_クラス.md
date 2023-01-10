@@ -2,6 +2,7 @@
 
 説明：
 ![画像](./img/sample_img.png)
+![画像](./img/sample_img2.png)
 
 解説：クラスを作ろう。
 
