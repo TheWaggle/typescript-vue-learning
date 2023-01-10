@@ -1,3 +1,5 @@
 {
-  class Person {}
+  class Person {
+    name: string;
+  }
 }
