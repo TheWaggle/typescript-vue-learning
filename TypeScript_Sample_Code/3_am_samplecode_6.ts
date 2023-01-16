@@ -1,0 +1,27 @@
+{
+  class Person {
+    protected name: string;
+    protected age: number;
+    constructor(name: string, age: number) {
+      this.name = name;
+      this.age = age;
+    }
+    show(): string {
+      return `${this.name}は${this.age}歳です。`;
+    }
+  }
+
+  class BusinessPerson extends Person {
+    work(): string {
+      return `${this.name}はテキパキ働きます。`;
+    }
+  }
+
+  let p = new BusinessPerson("理央", 30);
+  console.log(p.show());
+  console.log(p.work());
+
+  let p2 = new Person("隆史", 32);
+  console.log(p2.show());
+  console.log(p2.work());
+}
