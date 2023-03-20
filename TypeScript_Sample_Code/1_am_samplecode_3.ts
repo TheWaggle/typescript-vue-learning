@@ -8,4 +8,4 @@ if (true) {
   let s: number = 2;
 }
 //ブロック外はコンパイルエラー
-//console.log(s);
+console.log(s);

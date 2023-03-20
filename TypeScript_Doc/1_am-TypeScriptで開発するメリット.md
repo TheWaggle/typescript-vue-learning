@@ -22,7 +22,7 @@
 ---
 
 TypeScript は JavaScript の機能をすべて利用できることから`スーパーセット`とよばれている。(上位互換)つまり、JavaScript で書いたコードは TypeScript でもある。JavaScript を学習した人であれば、身につけた知識を活かしつつ、TypeScript を学習することができる。
-(JavaScript に対するプラウアルファは 90%が型検査について)
+(JavaScript に対するプラスアルファは 90%が型検査について)
 
 <br />
 
