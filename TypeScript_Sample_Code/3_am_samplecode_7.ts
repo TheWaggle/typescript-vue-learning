@@ -1,41 +1,45 @@
 {
-  class Person {
+  class Goods {
     protected name: string;
-    protected age: number;
-    constructor(name: string, age: number) {
+    protected price: number;
+    constructor(name: string, price: number) {
       this.name = name;
-      this.age = age;
+      this.price = price;
     }
     show(): string {
-      return `${this.name}は${this.age}歳です。`;
+      return `${this.name}は${this.price}円です。`;
     }
   }
 
-  class BusinessPerson extends Person {
-    protected clazz: string;
-    constructor(name: string, age: number, clazz: string) {
-      super(name, age);
-      this.clazz = clazz;
+  class SaleGoods extends Goods {
+    protected category: string;
+    constructor(name: string, price: number, category: string) {
+      //親クラスのコンストラクターを呼び出す
+      super(name, price);
+      //子クラスでは新たに、categoryプロパティにcategoryを代入
+      this.category = category;
     }
+    //親クラスと同名のshowメソッドをオーバーライド
     show(): string {
-      return super.show() + `${this.clazz}です。`;
+      return super.show() + `${this.category}です。`;
     }
   }
 
-  let p = new BusinessPerson("理央", 30, "主任");
-  console.log(p.show());
+  let g = new SaleGoods("チョコチップクッキー", 580, "製菓");
+  console.log(g.show());
 
-  class Teacher extends Person {
-    protected subject: string;
-    constructor(name: string, age: number, subject: string) {
-      super(name, age);
-      this.subject = subject;
+  class Snack extends Goods {
+    protected type: string;
+    constructor(name: string, price: number, type: string) {
+      super(name, price);
+      this.type = type;
     }
-    teach(): string {
-      return super.show() + `${this.subject}を教えます。`;
+    tasteType(): string {
+      return super.show() + `${this.type}スナックです。`;
     }
   }
 
-  let t2 = new Teacher("大西先生", 45, "数学");
-  console.log(t2.show());
+  let s2 = new Snack("チョコチップクッキー", 580, "甘い");
+  //親クラスのshowを呼び出す
+  console.log(s2.show());
 }

@@ -18,13 +18,15 @@
 
 7.[メソッドのオーバーライド](#anchor7)
 
-8.[ 抽象メソッド](#anchor8)
+8.[抽象メソッド](#anchor8)
 
 <div style="page-break-before:always"></div>
 
 <a id="anchor0"></a>
 
 ### 0.クラスとは
+
+---
 
 汎用的に使える鋳型(設計図)と表現されることが多い。
 関数と同じく、宣言のみしている状態のため実行するためには実体を作る必要
@@ -43,7 +45,7 @@ function Goods(name, price) {
 }
 //インスタンス化(実体)
 const g1 = new Goods("チョコチップクッキー", 580);
-p1.show();
+g1.show();
 ```
 
 一部、汎用的な関数はプロトタイプに定義していた。クラスの 1 つ上の親のようなイメージ(デフォルトで勝手に継承されている。)メモリの消費を減らすことができる
@@ -61,6 +63,24 @@ const g1 = new Goods("チョコチップクッキー", 580);
 g1.show();
 ```
 
+余談だが、this の定義もきちんとすると以下のような書き方になる
+
+```typescript
+function Goods(this: GoodsFunc, name: string, price: number) {
+  this.name = name;
+  this.price = price;
+  this.show = function () {
+    console.log(`${this.name}は${this.price}円です`);
+  };
+}
+
+type GoodsFunc = {
+  name: string;
+  price: number;
+  show(): void;
+};
+```
+
 <div style="page-break-before:always"></div>
 
 ### 用語の整理
@@ -72,13 +92,13 @@ g1.show();
 | メソッド(method)       | 他の言語では、メンバー関数と呼ばれる。ロジックを書く場所                                                                                 |
 | プロパティ(property)   | 他の言語では、メンバー変数、フィールドと呼ばれる。名前を持ち、指定された型のデータを保持する。インスタンスごとに別の名前空間を持つ。     |
 
----
-
 <div style="page-break-before:always"></div>
 
 <a id="anchor1"></a>
 
 ### 1.クラスを定義する
+
+---
 
 クラス名、プロパティ名、メソッド名はルールに乗っ取り自由に設定できるが、コンストラクタは`constructo`で固定。
 
@@ -109,13 +129,13 @@ console.log(Goods("チーズタルト", 500).show());
 
 サンプルコード：[3_am_sample1_1](../TypeScript_Sample_Code/3_am_samplecode_1.ts)
 
----
-
 <div style="page-break-before:always"></div>
 
 <a id="anchor2"></a>
 
 ### 2.アクセス修飾子
+
+---
 
 | 用語        | 概要                                                                                                   |
 | ----------- | ------------------------------------------------------------------------------------------------------ |
@@ -149,13 +169,13 @@ console.log(g.name);
 
 サンプルコード：[3_am_sample2_2](../TypeScript_Sample_Code/3_am_samplecode_2.ts)
 
----
-
 <div style="page-break-before:always"></div>
 
 <a id="anchor3"></a>
 
 ### 3.コンストラクタとプロパティ設定
+
+---
 
 コンストラクタはクラスからオブジェクトを生成する際に必ず実行される関数。
 その性質上、与えられた引数をもとにプロパティを初期化する用途に用いられることが多い。
@@ -180,13 +200,13 @@ g.price = 800;
 
 サンプルコード：[3_am_sample3_3](../TypeScript_Sample_Code/3_am_samplecode_3.ts)
 
----
-
 <div style="page-break-before:always"></div>
 
 <a id="anchor4"></a>
 
 ### 4.getter/setter アクセッサ
+
+---
 
 プロパティのように見えるが、実際は裏でメソッドを呼び出し処理を行っているもの。
 
@@ -195,9 +215,10 @@ g.price = 800;
 | getter         | 値を返すアクセッサ     |
 | setter         | 値を節制するアクセッサ |
 
-読み書きを制御できる
-`set` を使うことで読み取り専用のプロパティを、`get` を使うことで書き込み専用のプロパティを表せる -値のチェック/戻り値の加工などが可能
-getter/setter はコードブロックなので、値を取得/設定する際に値のチェック/加工などの処理を差し込める(部品としてより高い品質を保証できる)
+- 読み書きを制御できる
+- `set` を使うことで読み取り専用のプロパティを、`get` を使うことで書き込み専用のプロパティを表せる
+- 値のチェック/戻り値の加工などが可能
+- getter/setter はコードブロックなので、値を取得/設定する際に値のチェック/加工などの処理を差し込める(部品としてより高い品質を保証できる)
 
 ```typescript
 class Goods {
@@ -227,20 +248,24 @@ class Goods {
 let g = new Goods();
 //setterアクセサーに1000を渡す
 g.price = 1000;
-console.log(p.price);
+console.log(g.price);
 
 //プライベートプロパティに500を渡す
-p._price = 500;
-console.log(p.price);
+g._price = 500;
+console.log(g._price);
 
 //プライベートプロパティに"Ice Cream"を渡す
-p.name = "Ice Cream";
-console.log(p.name);
+g.name = "Ice Cream";
+console.log(g.name);
 ```
+
+サンプルコード：[3_am_sample3_4](../TypeScript_Sample_Code/3_am_samplecode_4.ts)
 
 <a id="anchor5"></a>
 
 ### 5.静的メンバー
+
+---
 
 オブジェクトの要素は、基本的に`new`によって生成されたインスタンスごとにデータを保持する。
 メソッドも`this`は現在実行中のインスタンスを指す。
@@ -264,13 +289,15 @@ console.log(Shape.PI);
 console.log(Shape.circle(5));
 ```
 
----
+サンプルコード：[3_am_sample3_5](../TypeScript_Sample_Code/3_am_samplecode_5.ts)
 
 <div style="page-break-before:always"></div>
 
 <a id="anchor6"></a>
 
 ### 6.継承(Inheritance)
+
+---
 
 クラスを機能拡張する方法の 1 つが継承。
 元となるクラスの機能(メンバー)を引き継ぎながら、新しい機能を追加したり、元の機能の一部だけを修正したりすること。
@@ -303,7 +330,7 @@ class Goods {
 }
 //Goodsクラスを継承する子クラスBusinessGoods
 class SaleGoods extends Goods {
-  //workメソッド：戻り値string型
+  //priceDownメソッド：戻り値string型
   priceDown(): string {
     return `${this.name}は今だけ50%オフです。`;
   }
@@ -312,26 +339,26 @@ class SaleGoods extends Goods {
 let g = new SaleGoods("チョコチップクッキー", 580);
 //親クラスのshowメソッドを呼び出す
 console.log(g.show());
-//子クラスのworkメソッドを呼び出す
+//子クラスのpriceDownメソッドを呼び出す
 console.log(g.priceDown());
 
 //　親クラスをnewしてオブジェクトを生成し、変数pに代入
 let g2 = new Goods("チーズケーキ", 600);
 //親クラスのshowメソッドを呼び出す
 console.log(g2.show());
-//子クラスのworkメソッドを呼び出す
-console.log(g2.work());
+//子クラスのpriceDownメソッドを呼び出す
+console.log(g2.priceDown());
 ```
 
 サンプルコード：[3_am_sample3_6](../TypeScript_Sample_Code/3_am_samplecode_6.ts)
-
----
 
 <div style="page-break-before:always"></div>
 
 <a id="anchor7"></a>
 
 ### 7.メソッドのオーバーライド
+
+---
 
 親クラスで定義された内容を、子クラスで定義しなおすこと。(上書きする)親クラスのコードを完全に書き換えてもよいが、親クラスの機能を呼び出し、子クラスで独自の機能を追加することもできる。
 
@@ -366,7 +393,7 @@ let g = new SaleGoods("チョコチップクッキー", 580, "製菓");
 console.log(g.show());
 
 class Snack extends Goods {
-  protected subject: string;
+  protected type: string;
   constructor(name: string, price: number, type: string) {
     super(name, price);
     this.type = type;
@@ -378,18 +405,18 @@ class Snack extends Goods {
 
 let s2 = new Snack("チョコチップクッキー", 580, "甘い");
 //親クラスのshowを呼び出す
-console.log(t2.show());
+console.log(s2.show());
 ```
 
 サンプルコード：[3_am_sample3_7](../TypeScript_Sample_Code/3_am_samplecode_7.ts)
-
----
 
 <div style="page-break-before:always"></div>
 
 <a id="anchor8"></a>
 
 ### 8 抽象メソッド
+
+---
 
 サブクラスで機能を上書きしなければならないようにする。`abstrat` 修飾子で表現する。
 抽象クラス=抽象メソッドを含んだクラス
@@ -421,15 +448,13 @@ console.log(t.getArea());
 
 //Shapeを継承した子クラスCircle
 class Circle extends Shape {
-  getOuterCircumference(): number {
+  getArea(): number {
     return this.width * 3.14;
   }
 }
 
 let c = new Circle(10, 5);
-console.log(c.getOuterCircumference());
+console.log(c.getArea());
 ```
 
 サンプルコード：[3_am_sample3_8](../TypeScript_Sample_Code/3_am_samplecode_8.ts)
-
----

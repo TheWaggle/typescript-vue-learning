@@ -1,16 +1,24 @@
 {
-  class Person {
+  //`Goods`クラス(Goods設計図)
+  class Goods {
+    //string型の`name`というプロパティ
     name: string;
-    age: number;
-    constructor(name: string, age: number) {
+    //number型の`price`というプロパティ
+    price: number;
+    constructor(name: string, price: number) {
       this.name = name;
-      this.age = age;
+      this.price = price;
     }
+    //戻り値がstring型の`show`という名前のメソッド
     show(): string {
-      return `${this.name}は${this.age}歳です。`;
+      return `${this.name}は${this.price}円です。`;
     }
   }
-  let p = new Person("理央", 30);
-  console.log(p.show());
-  console.log(Person("隆史", 32).show());
+  //Goodsクラスからオブジェクトを生成して、`g`という変数に格納する
+  let g = new Goods("チーズケーキ", 690);
+  //コンソールにpオブジェクトのshowメソッドを呼び出す。
+  console.log(g.show());
+
+  //クラスに対してインスタンス化せず、直接メソッドを呼び出すのはNG。
+  console.log(Goods("チーズタルト", 500).show());
 }

@@ -1,27 +1,35 @@
-{
-  class Person {
-    protected name: string;
-    protected age: number;
-    constructor(name: string, age: number) {
-      this.name = name;
-      this.age = age;
-    }
-    show(): string {
-      return `${this.name}は${this.age}歳です。`;
-    }
+class Goods {
+  //子クラスでアクセスできるようにprotected プロパティ名name:string型
+  protected name: string;
+  //子クラスでアクセスできるようにprotected プロパティ名price:number型
+  protected price: number;
+  //インスタンス化されるときに実行されるconstructor(仮引数name:string型,仮引数price:number型)
+  constructor(name: string, price: number) {
+    this.name = name;
+    this.price = price;
   }
-
-  class BusinessPerson extends Person {
-    work(): string {
-      return `${this.name}はテキパキ働きます。`;
-    }
+  //showメソッド:戻り値string型
+  show(): string {
+    return `${this.name}は${this.price}円です。`;
   }
-
-  let p = new BusinessPerson("理央", 30);
-  console.log(p.show());
-  console.log(p.work());
-
-  let p2 = new Person("隆史", 32);
-  console.log(p2.show());
-  console.log(p2.work());
 }
+//Goodsクラスを継承する子クラスBusinessGoods
+class SaleGoods extends Goods {
+  //priceDownメソッド：戻り値string型
+  priceDown(): string {
+    return `${this.name}は今だけ50%オフです。`;
+  }
+}
+//子クラスをnewしてオブジェクトを生成し、変数pに代入
+let g = new SaleGoods("チョコチップクッキー", 580);
+//親クラスのshowメソッドを呼び出す
+console.log(g.show());
+//子クラスのpriceDownメソッドを呼び出す
+console.log(g.priceDown());
+
+//　親クラスをnewしてオブジェクトを生成し、変数pに代入
+let g2 = new Goods("チーズケーキ", 600);
+//親クラスのshowメソッドを呼び出す
+console.log(g2.show());
+//子クラスのpriceDownメソッドを呼び出す
+console.log(g2.priceDown());

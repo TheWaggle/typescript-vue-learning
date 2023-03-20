@@ -1,13 +1,17 @@
 {
-  class Person {
+  class Goods {
     name: string;
-    private age: number;
-    constructor(name: string, age: number) {
+    private price: number;
+    //インスタンス化する際に渡されるstring型の`name`変数とnumber型の`price`変数
+    constructor(name: string, price: number) {
+      //このクラスのnameプロパティに引数nameの値を代入
       this.name = name;
-      this.age = age;
+      //このクラスのpriceプロパティに引数priceの値を代入
+      this.price = price;
     }
   }
 
-  let p = new Person("鈴木", 38);
-  p.age = 50;
+  let g = new Goods("チョコチップクッキー", 580);
+  //クラス内からしかアクセスできないpriceプロパティに外部からアクセスするのはNG
+  g.price = 800;
 }
