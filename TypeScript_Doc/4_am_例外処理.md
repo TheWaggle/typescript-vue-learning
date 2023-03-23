@@ -59,7 +59,7 @@ Step1(外部サーバーのファイルにアクセス)→Step2(データを取�
   }
   ```
 
-- サンプルコード：[4_am_samplecode_3.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_3.ts)
+- サンプルコード：[4_am_samplecode_3.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_3.ts)
 
 - ログ結果
 
@@ -136,7 +136,7 @@ Step1(外部サーバーのファイルにアクセス)→Step2(データを取�
   }
   ```
 
-- サンプルコード：[4_am_samplecode_0-5.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_0-5.ts)
+- サンプルコード：[4_am_samplecode_0-5.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_0-5.ts)
 
 - ログ結果
 
@@ -189,7 +189,7 @@ Step1(外部サーバーのファイルにアクセス)→Step2(データを取�
     .catch((err) => console.log(err));
   ```
 
-- サンプルコード：[4_am_samplecode_2-3.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_2-3.ts)
+- サンプルコード：[4_am_samplecode_2-3.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_2-3.ts)
 
 - ログ結果
 
