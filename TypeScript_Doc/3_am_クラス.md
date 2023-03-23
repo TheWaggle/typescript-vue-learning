@@ -20,6 +20,10 @@
 
 8.[抽象メソッド](#anchor8)
 
+9.[シングルトンパターン](#anchor9)
+
+10.[クラスを使った確認問題](#anchor10)
+
 <div style="page-break-before:always"></div>
 
 <a id="anchor0"></a>
@@ -63,6 +67,8 @@ const g1 = new Goods("チョコチップクッキー", 580);
 g1.show();
 ```
 
+<div style="page-break-before:always"></div>
+
 余談だが、this の定義もきちんとすると以下のような書き方になる
 
 ```typescript
@@ -80,8 +86,6 @@ type GoodsFunc = {
   show(): void;
 };
 ```
-
-<div style="page-break-before:always"></div>
 
 ### 用語の整理
 
@@ -220,6 +224,8 @@ g.price = 800;
 - 値のチェック/戻り値の加工などが可能
 - getter/setter はコードブロックなので、値を取得/設定する際に値のチェック/加工などの処理を差し込める(部品としてより高い品質を保証できる)
 
+<div style="page-break-before:always"></div>
+
 ```typescript
 class Goods {
   //class内からしかアクセスできない_priceプロパティはnumber型
@@ -260,6 +266,8 @@ console.log(g.name);
 ```
 
 サンプルコード：[3_am_sample3_4](../TypeScript_Sample_Code/3_am_samplecode_4.ts)
+
+<div style="page-break-before:always"></div>
 
 <a id="anchor5"></a>
 
@@ -457,4 +465,71 @@ let c = new Circle(10, 5);
 console.log(c.getArea());
 ```
 
-サンプルコード：[3_am_sample3_8](../TypeScript_Sample_Code/3_am_samplecode_8.ts)
+サンプルコード：[3_am_sample3_8-1](../TypeScript_Sample_Code/3_am_samplecode_8-1.ts)
+
+<div style="page-break-before:always"></div>
+
+<a id="anchor9"></a>
+
+### 9.シングルトンパターン
+
+---
+
+- オブジェクト指向プログラミングにおけるデザインパターン
+- 特定のクラスのインスタンスが必ず 1 つしか存在しないようにする
+- `constructor`に`private`をつけることで外から`new`できなくなる
+- クラスのインスタンスではなくクラス自体に 1 つしか存在しない静的フィールド`static instance`を作る
+
+```typescript
+class Singleton {
+  private static instance: Singleton;
+  private constructor() {}
+
+  public static getInstance(): Singleton {
+    if (!Singleton.instance) {
+      Singleton.instance = new Singleton();
+    }
+    return Singleton.instance;
+  }
+  public logMethod(): void {
+    console.log("Singleton!!!");
+  }
+}
+
+//呼び出し
+Singleton.getInstance().logMethod();
+```
+
+サンプルコード：[3_am_sample3_8-2](../TypeScript_Sample_Code/3_am_samplecode_8-2.ts)
+
+<div style="page-break-before:always"></div>
+
+<a id="anchor10"></a>
+
+### 10.クラスを使った確認問題
+
+---
+
+レジ打ちアプリを作ろう
+
+- 初期表示
+  - <img src="../TypeScript_Doc/img/class_practice_img1.png" width="50%">
+  - 10 個のアイテムと金額が表示されたボタンと合計金額エリアが表示される
+- ボタンクリック時の動作
+  - <img src="../TypeScript_Doc/img/class_practice_img2.png" width="50%">
+  - 例：バナナをクリックすると合計金額が 150 となる
+  - <img src="../TypeScript_Doc/img/class_practice_img3.png" width="50%">
+  - 例：カニをクリックすると合計金額が 4150 となる
+  - <img src="../TypeScript_Doc/img/class_practice_img4.png" width="50%">
+  - 例：カニをもう一度クリックするとキャンセルされ、合計金額は 150 となる
+
+#### 実装手順
+
+---
+
+- コードのひな形：[3_am_class](../TypeScript_Sample_Code/3_am_class) をダウンロードする
+- `index.html`と`style.css`が含まれていることを確認
+- tsconfig.json を作り、typescript 開発環境を作成
+- `index.ts`を作成
+- コンパイルして`dist/index.js`ができるようにする
+- ブラウザで表示を確認する

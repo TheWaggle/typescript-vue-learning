@@ -1,0 +1,57 @@
+body {
+  background-color: #eee;
+}
+.l-container {
+  width: 90%;
+  max-width: 960px;
+  text-align: center;
+  margin: 3rem auto;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  appearance: none;
+  background-color: #04ced5;
+  width: 50px;
+  height: 50px;
+  font-size: 2rem;
+  color: #fff;
+  display: block;
+}
+.l-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+.l-output {
+  margin: 0 auto;
+}
+.l-calcwrapper {
+  display: inline-block;
+  border: 1px solid #333;
+  padding: 1.5rem;
+  text-align: center;
+}
+.l-result {
+  background-color: #98d7d7;
+  width: 314px;
+  height: 50px;
+  font-size: 2.5rem;
+  text-align: right;
+  padding: 0.5rem;
+  font-weight: 800;
+}
+.u-price-text {
+  margin: 0;
+  color: #fff;
+}
+#btn-add {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+.price-label {
+  background-color: #04ced5;
+}

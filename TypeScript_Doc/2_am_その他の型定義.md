@@ -170,9 +170,17 @@ let val4: string | null = null;
 - 型エイリアス(Type Alias)は特定の型に対して別名(エイリアス)を設定するためのしくみ
   - 同じ型を何度も定義する必要がないので再利用性が高い
   - 型に名前を付けることで変数の役割を明確化できる
-- 主にタプル型、共用型などに対して短い名前を付ける用途で利用
+  - 複雑な型をより読みやすく短く表現することができる
+- 主にタプル型、共用型、交差型などに対して短い名前を付ける用途で利用
 
-共用型であればこのように別名を設定可能
+### 共用型・タプル型
+
+---
+
+- 共用型とは、複数の型のうちいずれか 1 つを持つ型
+- タプル型は異なる型の複数の要素を持つ配列を表現する型
+- 通常の配列は同じ型の要素の集合を表現する
+- タプル型は異なる型の要素を持つことができる
 
 ```typescript
 //タプル型にAnyTypeという名前を付与
@@ -182,11 +190,58 @@ let val: AnyType = ["abc", 12, false];
 let val2: AnyType = ["abc", "12", false]; //エラー
 
 //共用型の場合
-type OrType = number | boolean;
+type OrType = number | string;
+function add(a: OrType, b: OrType): string {
+  if (typeof a === "number" && typeof b === "number") {
+    return String(a + b);
+  }
+  if (typeof a === "string" && typeof b === "string") {
+    return a.concat(b);
+  }
+  return String(a) + String(b);
+}
 ```
 
-サンプルコード：[1_am_samplecode_14.ts](../TypeScript_Sample_Code/1_am_samplecode_14.ts)
+> 多用すると型があいまいになり、コードの読みやすさや保守性が低下する可能性がある
 
-- 型エイリアスは構文上はいかなる型にも利用できるが、インターフェースでできることを型エイリアスで行うべきではない
-- 型エイリアスは単なる別名であり、継承/実装などといった用途には利用できない
-- 型エイリアスを共用型/タプル型以外で利用したくなったら、「本当にインターフェースで実現できないか」を再考する
+サンプルコード：[1_am_samplecode_14-1.ts](../TypeScript_Sample_Code/1_am_samplecode_14-1.ts)
+
+<div style="page-break-before:always"></div>
+
+### 共用体型・交差型
+
+---
+
+- 共用体型とは 2 つ以上の型のプロパティをすべて持つ型
+
+```typescript
+//オブジェクトの場合
+//共用体型
+type Admin = {
+  name: string;
+  privileges: string[];
+};
+type Employee = {
+  name: string;
+  contractDate: Date;
+};
+//AdminとEmployeeを結合して新しくElevetedEmployeeを作成
+type ElevetedEmployee = Admin & Employee;
+const e1: ElevetedEmployee = {
+  name: "rick",
+  privileges: ["create-server"],
+  contractDate: new Date(),
+};
+
+//リテラル型の場合
+type Comb = string | number;
+type Numeric = number | boolean;
+
+type Mix = Comb & Numeric;
+```
+
+サンプルコード：[1_am_samplecode_14-2.ts](../TypeScript_Sample_Code/1_am_samplecode_14-2.ts)
+
+- 交差型は、異なるプロパティを結合することはできる。
+- `Mix`は、`Comb`と`Numeric`の両方の特性を持つ交差型
+- `Comb`と`Numeric`は両方とも`number`型を含んでいるため`Mix`型は`number`型になる
