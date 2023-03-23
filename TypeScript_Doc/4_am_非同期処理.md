@@ -138,7 +138,7 @@ btn.addEventListener("click", function () {
   });
   ```
 
-- サンプルコード：[4_am_samplecode_0-1.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_0-1.ts)
+- サンプルコード：[4_am_samplecode_0-1.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_0-1.ts)
 
 - ログ結果
 
@@ -186,7 +186,7 @@ btn.addEventListener("click", function () {
   });
   ```
 
-- サンプルコード：[4_am_samplecode_0-2.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_0-2.ts)
+- サンプルコード：[4_am_samplecode_0-2.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_0-2.ts)
 
 - ログ結果
 
@@ -245,7 +245,7 @@ btn.addEventListener("click", function () {
     });
   ```
 
-- サンプルコード：[4_am_samplecode_0-3.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_0-3.ts)
+- サンプルコード：[4_am_samplecode_0-3.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_0-3.ts)
 
 - ログ結果
 
@@ -306,7 +306,7 @@ btn.addEventListener("click", function () {
     .then((msg) => PromisFunc3(msg, 1000));
   ```
 
-- サンプルコード：[4_am_samplecode_0-4.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_0-4.ts)
+- サンプルコード：[4_am_samplecode_0-4.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_0-4.ts)
 
 - ログ結果
 
@@ -351,7 +351,7 @@ btn.addEventListener("click", function () {
   }
   ```
 
-- サンプルコード：[4_am_samplecode_0-5.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_0-5.ts)
+- サンプルコード：[4_am_samplecode_0-5.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_0-5.ts)
 
 - ログ結果
 
@@ -402,7 +402,7 @@ btn.addEventListener("click", function () {
     .catch((err) => console.log(err.message));
   ```
 
-- サンプルコード：[4_am_samplecode_1-1.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_1-1.ts)
+- サンプルコード：[4_am_samplecode_1-1.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_1-1.ts)
 
 - ログ結果
 
@@ -444,7 +444,7 @@ btn.addEventListener("click", function () {
     .catch((err) => console.log(err));
   ```
 
-- サンプルコード：[4_am_samplecode_1-2.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_1-2.ts)
+- サンプルコード：[4_am_samplecode_1-2.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_1-2.ts)
 
 - ログ結果
 
@@ -493,7 +493,7 @@ btn.addEventListener("click", function () {
     .catch((err) => console.log(err));
   ```
 
-- サンプルコード：[4_am_samplecode_2-1.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_2-1.ts)
+- サンプルコード：[4_am_samplecode_2-1.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_2-1.ts)
 
 - ログ結果
 
@@ -548,7 +548,7 @@ btn.addEventListener("click", function () {
     .catch((err) => console.log(err));
   ```
 
-- サンプルコード：[4_am_samplecode_2-2.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_2-2.ts)
+- サンプルコード：[4_am_samplecode_2-2.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_2-2.ts)
 
 - ログ結果
 
@@ -628,7 +628,7 @@ btn.addEventListener("click", function () {
     .catch((err) => console.log(err));
   ```
 
-- サンプルコード：[4_am_samplecode_2-3.ts](../TypeScript_Sample_Code/4_am/../4_pm/src/4_am_samplecode_2-3.ts)
+- サンプルコード：[4_am_samplecode_2-3.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_2-3.ts)
 
 - ログ結果
 

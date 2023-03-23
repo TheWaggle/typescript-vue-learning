@@ -14,7 +14,7 @@ TypeScript &amp; Vue JS カリキュラム
 ・[型定義](./TypeScript_Doc/2_am_型定義.md)
 ・[その他の型定義](./TypeScript_Doc/2_am_その他の型定義.md)
 
-### 2 回目 後
+### 2 回目 後半
 
 ・[関数](./TypeScript_Doc/2_pm_関数.md)
 
@@ -39,7 +39,7 @@ TypeScript &amp; Vue JS カリキュラム
 ### 5 日目 前半
 
 ・[復習](./TypeScript_Doc/5_am_復習.md)
-・[確認](./TypeScript_Doc/5_am_テスト.md)
+・[確認](./TypeScript_Doc/5_pm_テスト.md)
 
 ### 5 日目 テスト
 

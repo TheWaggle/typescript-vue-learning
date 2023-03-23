@@ -7,7 +7,8 @@
 - バインディングの値の真偽値に基づいて要素の描画を行う
 - v-if のエリアは切り替えると DOM 自体から削除、追加が行われる
 - 兄弟要素に対して`v-else`、`v-else-if`で条件分岐を作ることができる
-- [v-if](https://jp.vuejs.org/v2/api/#v-if)
+
+> 参考： [v-if](https://jp.vuejs.org/v2/api/#v-if)
 
 ```html
 <label for="bloodtype"></label>
@@ -25,7 +26,8 @@
 ---
 
 - 式の値の真偽値によって DOM 要素の表示非表示を切り替える
-- [v-show](https://jp.vuejs.org/v2/api/#v-show)
+
+> 参考： [v-show](https://jp.vuejs.org/v2/api/#v-show)
 
 ```html
 <button type="button" @click="isActive = !isActive">表示非表示切り替えボタン</button>
@@ -41,7 +43,8 @@
 - ソースデータに基づき、要素またはテンプレートブロックを複数回描画する
 - 繰り返される要素をバラバラに 1 要素ずつ取得するために`in`または`of`式を使う
 - `key`属性を指定することで意図した順番になるようにする
-- [v-for](https://jp.vuejs.org/v2/api/#v-for)
+
+> 参考： [v-for](https://jp.vuejs.org/v2/api/#v-for)
 
 ```html
 <div class="step1">
