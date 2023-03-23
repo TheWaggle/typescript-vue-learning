@@ -54,12 +54,12 @@ Step1(外部サーバーのファイルにアクセス)→Step2(データを取�
     } else {
       throw new Error("サーバーアクセス失敗");
     }
-  } catch (e) {
+  } catch (e: any) {
     console.log(e.message);
   }
   ```
 
-- サンプルコード：[4_am_samplecode_3.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_3.ts)
+- サンプルコード：[4_am_samplecode_0-6.ts](../TypeScript_Sample_Code/4_am_pm/src/4_am_samplecode_0-6.ts)
 
 - ログ結果
 
