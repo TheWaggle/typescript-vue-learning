@@ -74,6 +74,8 @@ new Vue({
   <OriginalFilter></OriginalFilter>
   ```
 
+  <div style="page-break-before:always"></div>
+
 ### 再利用対象となるコンポーネント
 
 - vue ファイルで単一ファイルコンポーネントを作成

@@ -235,7 +235,7 @@ console.log(document);
 
 - render 関数で作っているものは DOM 要素ではなく Javascript のオブジェクト要素
 - render 関数は仮想 node を return している
-- **仮想 DOM**を作るために**仮想 node(vnode)**を作っている
+- **仮想 DOM**を作るために仮想 node(vnode)を作っている
 
 > `document.createElement`は DOM に直接アクセスし、DOM を書き換えている、render 関数の`h`は仮想 node を作って、仮想 DOM に伝えている
 
