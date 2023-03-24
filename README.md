@@ -58,6 +58,7 @@ TypeScript &amp; Vue JS カリキュラム
 ・[単一ファイルコンポーネント(template,script,style)](./Vue.js_Doc/6_pm-単一ファイルコンポーネント.md)
 ・[Vue.js の基本構文(v-bind,v-on,v-model)](<Vue.js_Doc/6_pm-Vue.jsの基本構文(v-bind,v-on,v-model).md>)
 ・[class や style に対する v-bind](./Vue.js_Doc/6_pm-classやstyleに対するv-bind.md)
+・[確認問題](./Vue.js_Doc/6_確認問題.md)
 
 ### 7 日目 前半
 
@@ -72,6 +73,8 @@ TypeScript &amp; Vue JS カリキュラム
 ・[コンポーネントの登録](./Vue.js_Doc/7_pm-コンポーネントの登録.md)
 ・[再利用対象となるコンポーネントの作成](./Vue.js_Doc/7_pm-再利用対象となるコンポーネントの作成.md)
 ・[props](./Vue.js_Doc/7_pm-親子間のデータの受け渡し.md)
+・[確認問題 1](./Vue.js_Doc/7_確認問題1.md)
+・[確認問題 2](./Vue.js_Doc/7_確認問題2.md)
 
 ### 8 日目 前半 後半
 
