@@ -1,6 +1,6 @@
 # class や style に対する v-bind
 
-ンプルコード：[Directive.vue](../Vue.js_Sample_Code/sample-app/src/components/Directive.vue)
+サンプルコード：[Directive.vue](../Vue.js_Sample_Code/sample-app/src/components/Directive.vue)
 
 ## class や style に対する v-bind の概要
 
