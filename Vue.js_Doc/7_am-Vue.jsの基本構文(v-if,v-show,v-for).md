@@ -1,5 +1,7 @@
 # Vue.js の基本構文(v-if,v-show,v-for)
 
+ンプルコード：[Directive.vue](../Vue.js_Sample_Code/sample-app/src/components/Directive.vue)
+
 ## v-if
 
 ---

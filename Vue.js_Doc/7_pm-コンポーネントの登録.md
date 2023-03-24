@@ -1,5 +1,7 @@
 # コンポーネントの登録
 
+サンプルコード：[app.js](../Vue.js_Sample_Code/sample-cdn/app.js)
+
 ## グローバルコンポーネントとローカルコンポーネント
 
 ---

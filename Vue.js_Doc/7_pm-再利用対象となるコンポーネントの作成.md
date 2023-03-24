@@ -1,5 +1,7 @@
 # 再利用対象となるコンポーネントの作成
 
+サンプルコード：[main.ts](../Vue.js_Sample_Code/sample-app/src/main.ts)
+
 ## main.ts の import を理解する
 
 ---

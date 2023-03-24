@@ -1,5 +1,7 @@
 # 親と子の間でのデータの受け渡し
 
+サンプルコード：[DataDelivery.vue](../Vue.js_Sample_Code/sample-app/src/components/DataDelivery.vue)
+
 ## 親と子の間でのデータの受け渡しはなぜ必要か？
 
 ---

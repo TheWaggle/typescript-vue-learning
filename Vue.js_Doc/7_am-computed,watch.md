@@ -1,5 +1,7 @@
 # computed(算出プロパティ)、watch(監視プロパティ)
 
+サンプルコード：[ComputedWatch.vue](../Vue.js_Sample_Code/sample-app/src/components/ComputedWatch.vue)
+
 ## computed(算出プロパティ) とは
 
 ---

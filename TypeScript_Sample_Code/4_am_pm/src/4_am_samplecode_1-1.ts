@@ -1,5 +1,5 @@
 {
-  async function asyncFunc(num: number): Promise<void | string> {
+  async function asyncFunc(num: number): Promise<string> {
     //非同期処理
     if (num % 10 === 0) {
       return "成功";

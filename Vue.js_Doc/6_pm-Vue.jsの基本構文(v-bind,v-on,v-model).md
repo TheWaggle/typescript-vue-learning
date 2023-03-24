@@ -1,5 +1,7 @@
 # Vue.js の基本構文(v-bind,v-on,v-model)
 
+サンプルコード：[Directive.vue](../Vue.js_Sample_Code/sample-app/src/components/Directive.vue)
+
 ## ディレクティブとは
 
 ---
@@ -15,7 +17,8 @@
 
 - HTML テンプレート内で Vue.js のデータバインディング、ディレクティブを記述するための独自記法
 - テンプレート構文を使用することで JavaScript や TypeSceipt を記述せずに簡単にデータバインディングや DOM 操作を行うことができる。
-- [テンプレート構文](https://v2.ja.vuejs.org/v2/guide/syntax.html)
+
+> 参考： [テンプレート構文](https://v2.ja.vuejs.org/v2/guide/syntax.html)
 
 ## v-bind
 
