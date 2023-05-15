@@ -114,7 +114,7 @@ Step1(外部サーバーのファイルにアクセス)→Step2(データを取�
   ```typescript
   {
     function PromisFunc(msg: string, time: number) {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void | string>((resolve, reject) => {
         setTimeout(() => {
           if (time < 6000) {
             console.log(msg);

@@ -4,7 +4,7 @@
     //!はプログラマがコンパイラに対してこの変数はundefinedやnullになることはないと伝える記述
     private _price!: number;
     //class内からしかアクセスできない_nameプロパティはstring型
-    private name!: string;
+    private _name!: string;
 
     //getterアクセサー プロパティ名price:プロパティのデータ型
     get price(): number {
@@ -33,6 +33,6 @@
   console.log(g._price);
 
   //プライベートプロパティに"Ice Cream"を渡す
-  g.name = "Ice Cream";
-  console.log(g.name);
+  g._name = "Ice Cream";
+  console.log(g._name);
 }

@@ -18,7 +18,7 @@
 
 7.[メソッドのオーバーライド](#anchor7)
 
-8.[抽象メソッド](#anchor8)
+8.[抽象クラス・抽象メソッド](#anchor8)
 
 9.[シングルトンパターン](#anchor9)
 
@@ -124,7 +124,7 @@ class Goods {
 }
 //Goodsクラスからオブジェクトを生成して、`g`という変数に格納する
 let g = new Goods("チーズケーキ", 690);
-//コンソールにpオブジェクトのshowメソッドを呼び出す。
+//コンソールにgオブジェクトのshowメソッドを呼び出す。
 console.log(g.show());
 
 //クラスに対してインスタンス化せず、直接メソッドを呼び出すのはNG。
@@ -220,7 +220,7 @@ g.price = 800;
 | setter         | 値を節制するアクセッサ |
 
 - 読み書きを制御できる
-- `set` を使うことで読み取り専用のプロパティを、`get` を使うことで書き込み専用のプロパティを表せる
+- `set` を使うことで書き込み専用のプロパティを、`get` を使うことで読み込み専用のプロパティを表せる
 - 値のチェック/戻り値の加工などが可能
 - getter/setter はコードブロックなので、値を取得/設定する際に値のチェック/加工などの処理を差し込める(部品としてより高い品質を保証できる)
 
@@ -422,7 +422,7 @@ console.log(s2.show());
 
 <a id="anchor8"></a>
 
-### 8 抽象メソッド
+### 8 抽象クラス・メソッド
 
 ---
 
@@ -435,6 +435,7 @@ console.log(s2.show());
 //抽象クラス shape
 abstract class Shape {
   //インスタンス化するときに実行する処理(子クラスでもアクセス可能 仮引数width:number型, 子クラスでもアクセス可能 仮引数height:number型)
+  //プロパティの型定義とプロパティ値の設定を同時に書ける（省略形）
   constructor(protected width: number, protected height: number) {}
   //抽象メソッド　getArea:戻り値number型 中身は未定義
   abstract getArea(): number;
@@ -530,6 +531,6 @@ Singleton.getInstance().logMethod();
 - コードのひな形：[3_am_class](../TypeScript_Sample_Code/3_am_class) をダウンロードする
 - `index.html`と`style.css`が含まれていることを確認
 - tsconfig.json を作り、typescript 開発環境を作成
-- `index.ts`を作成
+- `src/index.ts`を作成
 - コンパイルして`dist/index.js`ができるようにする
 - ブラウザで表示を確認する

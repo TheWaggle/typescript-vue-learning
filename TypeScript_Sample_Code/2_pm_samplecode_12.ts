@@ -5,7 +5,7 @@ type Comic = {
 
 type Magazine = {
   mcode: string;
-  tite: string;
+  title: string;
 };
 
 function getInfo(): Comic | Magazine {
@@ -16,6 +16,7 @@ function getInfo(): Comic | Magazine {
 }
 //型ガード関数の定義
 function isComic(inf: Comic | Magazine): inf is Comic {
+  //infをComic型にキャストし、undefinedではない場合はtrue、undefinedの場合はfalseを返す
   return (inf as Comic).isbn != undefined;
 }
 //型に応じて操作を分岐

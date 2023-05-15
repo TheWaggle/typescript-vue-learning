@@ -1,4 +1,4 @@
 function greeting(name: string): string {
   return `Hello, ${name}!`;
 }
-console.log(greeting("Typescript"));
+console.log(greeting("Typescript!!!"));

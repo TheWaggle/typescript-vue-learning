@@ -100,7 +100,7 @@ sumScore([12333, "hogehoge", boolean]);
 ---
 
 ```typescript
-//以下を実行すると結果のような表示なるような関数を実装しましょう。
+//以下を実⾏すると結果のような表⽰になる関数を実装しましょう。
 //税込み前の金額を入力すると税込み後の金額を含めたメッセージを返す関数です。
 
 taxIncluded(100); //結果：合計金額は110円です。
@@ -135,7 +135,7 @@ let allFish: Fish = [];
 allFish.push("鯖");
 allFish.push("鯛");
 //なぜエラーとなるか考えましょう
-//エラーの理由が変わったらコメントアウトしましょう
+//エラーの理由が分かったらコメントアウトしましょう
 allFish.push("鯨");
 
 type FishOrNot = string | null;
@@ -209,7 +209,7 @@ const timer2: () => string = timer();
 
 timer1(); //結果：1
 timer1(); //結果：2
-timer1(); //結果：2
+timer1(); //結果：3
 
 timer2(); //結果：1
 timer2(); //結果：2

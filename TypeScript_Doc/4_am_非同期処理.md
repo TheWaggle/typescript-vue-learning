@@ -329,7 +329,7 @@ btn.addEventListener("click", function () {
   ```typescript
   {
     function PromisFunc(msg: string, time: number) {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void | string>((resolve, reject) => {
         //管理したい非同期処理
         setTimeout(() => {
           if (time < 6000) {

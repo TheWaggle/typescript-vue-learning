@@ -13,7 +13,7 @@ class Goods {
     return `${this.name}は${this.price}円です。`;
   }
 }
-//Goodsクラスを継承する子クラスBusinessGoods
+//Goodsクラスを継承する子クラスSaleGoods
 class SaleGoods extends Goods {
   //priceDownメソッド：戻り値string型
   priceDown(): string {
