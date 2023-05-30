@@ -24,7 +24,7 @@ Vue CLI は、本格的な Vue.js アプリケーション開発をするため�
 ---
 
 - 以下のコマンドで Vue CLI をインストールする
-  - `npm install -g@vue/cli@5.0.8`
+  - `npm install -g @vue/cli@5.0.8`
 - Vue CLI のインストールがきちんとできたか確認をする
   - `vue -V `
 

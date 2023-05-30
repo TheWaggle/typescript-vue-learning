@@ -23,13 +23,16 @@ const vm = new Vue({
     title: "はじめてのVue.js",
     ISBN: 12345,
   },
+  //renderメソッドはコンポーネントの描画を制御するために使用
+  //methodsはコンポーネントの振る舞いを制御
   render: function (h) {
     console.log(h("h1", `ISBN${this.ISBN}-${this.title}`));
     return h("h1", `ISBN${this.ISBN}-${this.title}`);
   },
 });
-vm.$mount("#app");
-const dir = document.createElement("p");
-console.log(dir);
+vm.$mount("#app1");
+const elem = document.createElement("p");
+console.log(elem);
 console.log(document);
+//JavaScriptオブジェクトのプロパティをすべて見る
 console.dir(document);

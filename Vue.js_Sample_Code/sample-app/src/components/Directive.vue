@@ -61,9 +61,14 @@
         <p>同意する：{{ userInfo.checked }}</p>
         <h3>チェックボックス2</h3>
         <div class="flex-wrapper">
-          <label><input type="checkbox" v-model="userInfo.request" />入会希望</label>
-          <label><input type="checkbox" v-model="userInfo.request" />メルマガ希望</label>
-          <label><input type="checkbox" v-model="userInfo.request" />どちらも希望しない</label>
+          <!-- <label><input type="checkbox" v-model="userInfo.request" />入会希望</label>
+          <label><input type="checkbox" v-model="userInfo.request" />メルマガ希望</label> -->
+          <!-- <label><input type="checkbox" v-model="userInfo.request" />どちらも希望しない</label> -->
+          <label><input type="checkbox" v-model="userInfo.request" value="入会希望" />入会希望</label>
+          <label><input type="checkbox" v-model="userInfo.request" value="メルマガ希望" />メルマガ希望</label>
+          <label
+            ><input type="checkbox" v-model="userInfo.request" value="どちらも希望しない" />どちらも希望しない</label
+          >
         </div>
         <p>リクエスト内容：{{ userInfo.request }}</p>
       </div>
@@ -144,8 +149,15 @@ export default class Directive extends Vue {
     y: 0,
   };
   // v-model
-  public userInfo: { [key: string]: any } = {};
-
+  // public userInfo: { [key: string]: any } = {};
+  public userInfo = {
+    name: "",
+    checked: false,
+    request: [],
+    prefecture: "",
+    gender: "",
+    message: "",
+  };
   public changeMouseposition($event: MouseEvent, num: number) {
     // console.log("event", $event.clientX);
     this.position.x = $event.clientX * num;
