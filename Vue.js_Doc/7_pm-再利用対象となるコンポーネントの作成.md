@@ -1,6 +1,6 @@
 # 再利用対象となるコンポーネントの作成
 
-サンプルコード：[main.ts](../Vue.js_Sample_Code/sample-app/src/main.ts)
+サンプルコード：[main.ts](../Vue.js_Sample_Code/sample-app-vue3/src/main.ts)
 
 ## main.ts の import を理解する
 
@@ -13,7 +13,7 @@
 - コンポーネントはオブジェクト
 - 3 つのエリアに分かれている`vue`ファイルをインポートすることで 1 つのオブジェクトになる
 - そもそも `vue` ファイルは一般的には使えないがなぜ使えるか？
-  - `Vue-cli` の中で `webpack`(バンドルツール)動いており、その中の `vue-loader` がオブジェクトにコンパイルしている
+  - `vue` ファイルを `import` すると、`Vite` の `vue-plugin` によって、JavaScript のオブジェクトにコンパイルされる
 
 > `vue`ファイルは`import`をすると最終的に**コンポーネントのオブジェクト**になる
 
@@ -24,14 +24,16 @@
 実際にコンソールログを確認し、`App`の中身を確認しよう
 
 ```typescript
-import Vue from "vue";
+import { createApp } from "vue";
 import App from "./App.vue";
-import CompuedWatch from "./components/ComputedWatch.vue";
-Vue.config.productionTip = false;
-console.log(App);
-new Vue({
-  render: (h) => h(App),
-}).$mount("#app");
+import MyComponent from "./components/MyComponent.vue";
+
+const app = createApp(App);
+
+// Global component
+app.component("MyComponent", MyComponent);
+
+app.mount("#app");
 ```
 
 <div style="page-break-before:always"></div>
@@ -48,24 +50,12 @@ new Vue({
   > import すると vue ファイルはオブジェクトになる
 - **コンポーネントとして登録**している
   ```typescript
-  @Component({
+  export default {
     components: {
-      Directive,
       ComputedWatch,
       OriginalFilter,
     },
-  })
-  ```
-  > 以下の書き方の省略系(つまりオブジェクトとして扱っている)
-  > オブジェクトにおいてキーと値が同じであれば省略できる
-  ```typescript
-  @Component({
-    components: {
-      Directive:Directive,
-      ComputedWatch:ComputedWatch,
-      OriginalFilter:OriginalFilter,
-    },
-  })
+  };
   ```
 - 登録した DOM テンプレートを使用する
 

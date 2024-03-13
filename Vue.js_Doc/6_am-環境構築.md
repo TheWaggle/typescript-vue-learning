@@ -1,62 +1,73 @@
 # 環境構築
 
-## Vue CLI とは
+## Vite とは
 
 ---
 
-Vue CLI は、本格的な Vue.js アプリケーション開発をするための環境を構築するツール。Vue CLI では Vue.js 公式ツールに位置づけられている
+Vite は Vue.js のほかに React などにも対応したモダンなフロントエンドビルドツール。開発サーバーとしても利用でき、Vue.js では Vue3 から公式にサポートされている。
 
-> 2023 年現在 Vue CLI はメンテナンスモード。新しいプロジェクトを開始する場合は Vite ベースでの開発が推奨されている
+- [Vite](https://ja.vitejs.dev/)
 
-- [Vue CLI](https://cli.vuejs.org/#getting-started)
-
-## なぜ Vue CLI を使うのか
+## なぜ Vite を使うのか
 
 ---
 
-- ファイル分割をすることでコードの見通しがよくなる
-- 最終的にファイルはバンドルされるためコードが軽量化できる
-- Babel、TypeScript、ESLint などの Plugin を使い効率的に開発できる
-- HMR(Hot Module Replacement)の仕組みを利用できる
-
-## Vue CLI をインストールする
-
----
-
-- 以下のコマンドで Vue CLI をインストールする
-  - `npm install -g @vue/cli@5.0.8`
-- Vue CLI のインストールがきちんとできたか確認をする
-  - `vue -V `
-
-<div style="page-break-before:always"></div>
+- Single File Component (SFC, 拡張子 `.vue`) をブラウザで実行可能な JavaScript に変換する。
+- HMR (Hot Module Replacement) により、ファイルを変更した際にリアルタイムで反映する。
+- 従来のビルドツールよりもリロード速度が速い。
 
 ## プロジェクトを作成する
 
 ---
 
-- 以下コマンドでプロジェクトを作成
-  - `vue create sample-app`
-- Manually select features を選択
-  - 矢印キーで選択し、Enter キーで決定
-    ![設定1](../Vue.js_Doc/img/vue-cli1.png)
-  - 該当項目を選択(space キー入力すると選択/選択解除ができる)
-    ![設定2](../Vue.js_Doc/img/vue-cli2.png)
-  - `Use class-style component syntax?`を Yes にする
-    ![設定3](../Vue.js_Doc/img/vue-cli3-3.png)
-  - `cd sample-app`でフォルダ移動
-  - `npm run serve`で開発サーバーを起動する
-    ![設定4](../Vue.js_Doc/img/vue-cli4.png)
-  - ブラウザで確認する
-    ![設定5](../Vue.js_Doc/img/vue-cli5.png)
+はじめに、Node.js のバージョンを確認する。
 
-<div style="page-break-before:always"></div>
+```bash
+node -v
+```
+
+バージョンが 18 以上 (今回は 20.x を使用) が必要。
+
+```bash
+npm create vite@latest
+```
+
+このコマンドは、公式の Vue ツールである `create-vue` をインストールして実行する。TypeScript やテストのサポートなど、いくつかのオプション機能がプロンプトに表示される。
+
+<pre>
+<code>
+<span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Project name: <span style="color:#888;">… <span style="color:#89DDFF;">&lt;</span><span style="color:#888;">your-project-name</span><span style="color:#89DDFF;">&gt;</span></span></span>
+<span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add TypeScript? <span style="color:#888;">… No / <span style="color:#89DDFF;text-decoration:underline;">Yes</span></span></span>
+<span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add JSX Support? <span style="color:#888;">… <span style="color:#89DDFF;text-decoration:underline;">No</span> / Yes</span></span>
+<span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add Vue Router for Single Page Application development? <span style="color:#888;">… <span style="color:#89DDFF;text-decoration:underline;">No</span> / Yes</span></span>
+<span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add Pinia for state management? <span style="color:#888;">… <span style="color:#89DDFF;text-decoration:underline;">No</span> / Yes</span></span>
+<span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add Vitest for Unit testing? <span style="color:#888;">… <span style="color:#89DDFF;text-decoration:underline;">No</span> / Yes</span></span>
+<span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add an End-to-End Testing Solution? <span style="color:#888;">… <span style="color:#89DDFF;text-decoration:underline;">No</span> / Cypress / Playwright</span></span>
+<span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add ESLint for code quality? <span style="color:#888;">… No / <span style="color:#89DDFF;text-decoration:underline;">Yes</span></span></span>
+<span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add Prettier for code formatting? <span style="color:#888;">… No / <span style="color:#89DDFF;text-decoration:underline;">Yes</span></span></span>
+<span style="color:var(--vt-c-green);">✔</span> <span style="color:#A6ACCD;">Add Vue DevTools extension for debugging? (experimental) <span style="color:#888;">… <span style="color:#89DDFF;text-decoration:underline;">No</span> / Cypress / Playwright</span></span>
+<span></span>
+<span style="color:#A6ACCD;">Scaffolding project in ./<span style="color:#89DDFF;">&lt;</span><span style="color:#888;">your-project-name</span><span style="color:#89DDFF;">&gt;</span>...</span>
+<span style="color:#A6ACCD;">Done.</span>
+</code>
+</pre>
 
 ## 参考
 
 ---
 
 - `npm list vue`で vue のバージョンを確認することができる
-  ![参考](../Vue.js_Doc/img/vue-cli5-2.png)
+
+  <pre>
+  <code>
+  <span>vue-project@0.0.0 <path_to_project>/vue-project</span>
+  <span>├─┬ @vitejs/plugin-vue@5.0.4 </span>
+  <span>│  └── <span style="color:orange"> vue@3.4.21 </span>deduped </span>
+  <span>└─┬ <span style="color:orange"> vue@3.4.21 </span></span>
+  <span>└─┬ @vue/server-renderer@3.4.21 </span>
+  <span>    └── <span style="color:orange"> vue@3.4.21 </span>deduped </span>
+  </code>
+  </pre>
 
 - CDN の読み込みを利用する場合は以下のようなオンラインサービスでコードを書くことも可能(練習用)
   - [jsfiddle](https://jsfiddle.net/)

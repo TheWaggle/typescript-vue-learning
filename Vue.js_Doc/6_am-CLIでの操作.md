@@ -4,12 +4,39 @@
 
 ---
 
-以下のようなディレクトリ構造になっている
+以下のようなディレクトリ構造になっている。
 
-![設定6](../Vue.js_Doc/img/vue-cli6.png)
+```tree
+./vue-project/
+├── .eslintrc.cjs
+├── .gitignore
+├── .prettierrc.json
+├── README.md
+├── env.d.ts
+├── index.html
+├── package.json
+├── public
+│   └── favicon.ico
+├── src
+│   ├── App.vue
+│   ├── assets
+│   │   ├── base.css
+│   │   ├── logo.svg
+│   │   └── main.css
+│   ├── components
+│   │   ├── HelloWorld.vue
+│   │   ├── TheWelcome.vue
+│   │   ├── WelcomeItem.vue
+│   │   └── icons
+│   └── main.ts
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+```
 
-- `main.ts` は色々な vue を呼び出し、最終的には `bundle.js` など 1 つの js にバンドルされる
-- `App.vue`は`template`と`script`と`style`に分けられる
+- `main.ts` は Vue アプリケーションのエントリーポイントで、CSS や Vue コンポーネントを読み込んでいる。
+- `App.vue` はルートコンポーネントで、`<template>`, `<script>`, `<style>` の 3 つのブロックを持つ、SFC (Single File Component) 。
 
 <div style="page-break-before:always"></div>
 
@@ -60,30 +87,31 @@ Prettier を使うとそのような調整を自動で行う。
   }
   ```
 
-### .eslintrc.js とは
+### .eslintrc.cjs とは
 
 - Eslint の設定のみのファイル
 - `.eslintrc.json`でも OK
 - 細かな設定は ESLint の公式ページを確認[esling.org](https://eslint.org/docs/latest/use/getting-started)
 - 例としては以下のような設定がある
 
-  ```json
-  {
-    "env": {
-      "browser": true, //browserでみるJSですよ(nodeではない windowオブジェクトが存在する window.console.log()が使える)
-      "es2021": true
+  ```cjs
+  require("@rushstack/eslint-patch/modern-module-resolution");
+
+  module.exports = {
+    root: true, // ルートディレクトリに設定ファイルがあるかどうか
+    extends: [
+      "plugin:vue/vue3-essential", // Vue3の基本ルール
+      "eslint:recommended", // ESLintの推奨ルール
+      "@vue/eslint-config-typescript", // TypeScriptのルール
+      "@vue/eslint-config-prettier/skip-formatting", // Prettierと競合するルールを無効化
+    ],
+    parserOptions: {
+      ecmaVersion: "latest", // 最新のECMAScriptを使用
     },
-    "extends": "eslint:recommended", //eslintがおすすめの方法でエラーを出してくれる。(おすすめのルールを継承してくれる)
-    "parser": "babel-eslint", //どれを使って検証するか
-    //es-moduleを使っているということを教えている
-    "parserOptions": {
-      "sourceType": "module"
+    rules: {
+      "vue/multi-word-component-names": "off", // 2つ以上の単語を含むコンポーネント名を強制するルールを無効化
     },
-    "rules": {
-      //文末にセミコロンを必ずつける。ただし、ブロックの中に1つしか文がない場合はつけない
-      "semi": ["error", "always", { "omitLastInOneLineBlock": true }]
-    }
-  }
+  };
   ```
 
 <div style="page-break-before:always"></div>

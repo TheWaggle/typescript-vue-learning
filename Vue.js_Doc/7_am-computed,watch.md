@@ -1,6 +1,6 @@
 # computed(算出プロパティ)、watch(監視プロパティ)
 
-サンプルコード：[ComputedWatch.vue](../Vue.js_Sample_Code/sample-app/src/components/ComputedWatch.vue)
+サンプルコード：[ComputedWatch.vue](../Vue.js_Sample_Code/sample-app-vue3/src/components/ComputedWatch.vue)
 
 ## computed(算出プロパティ) とは
 
@@ -11,7 +11,7 @@
 - リアクティブなデータをそのまま描画するのではなく、文字列を加工したり、数値計算したりなどロジックを挟むときに使用する
 - 関数の戻り値をデータのように扱える
 
-> 参考：[comoputed](https://v2.ja.vuejs.org/v2/guide/computed.html)
+> 参考：[comoputed](https://ja.vuejs.org/guide/essentials/computed.html)
 
 ```html
 <label for="lastName">氏</label>
@@ -22,22 +22,28 @@
 ```
 
 ```typescript
-get bindName(): string {
-    if (this.user.firstName && this.user.lastName) {
-      return this.user.lastName + this.user.firstName;
+setup() {
+  const user = reactive({
+    lastName: "",
+    firstName: "",
+  });
+  const bindName = computed(() => {
+    if (user.firstName && user.lastName) {
+      return user.lastName + user.firstName;
     }
     return "お名前を入力してください";
-  }
-
+  });
+  return { user, bindName };
+}
 ```
 
 <div style="page-break-before:always"></div>
 
-## computed と method の違い
+## computed と通常関数の違い
 
 ---
 
-同じことを method を使っても書くことができる
+同じことを通常の関数で書いた場合と比較してみる
 
 ```html
 <label for="lastName">氏</label>
@@ -48,12 +54,19 @@ get bindName(): string {
 ```
 
 ```typescript
-  bindNameMethod(): string {
-    if (this.user.firstName && this.user.lastName) {
-      return this.user.lastName + this.user.firstName;
+setup() {
+  const user = reactive({
+    lastName: "",
+    firstName: "",
+  });
+  const bindNameMethod = () => {
+    if (user.firstName && user.lastName) {
+      return user.lastName + user.firstName;
     }
     return "お名前を入力してください";
-  }
+  };
+  return { user, bindNameMethod };
+}
 ```
 
 <div style="page-break-before:always"></div>
@@ -123,7 +136,11 @@ get bindName(): string {
 <input type="text" if="firstName" v-model="user.firstName" />
 <p>computedを使用：{{ bindName }}</p>
 <p>methodを使用：{{ bindNameMethod() }}</p>
-<p>watchを使用：{{ userName }}<span v-if="!userName">お名前を入力してください</span></p>
+<p>
+  watchを使用：{{ userName }}<span v-if="!userName"
+    >お名前を入力してください</span
+  >
+</p>
 ```
 
 ```typescript

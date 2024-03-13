@@ -1,6 +1,6 @@
 # Vue.js の基本構文(v-bind,v-on,v-model)
 
-サンプルコード：[Directive.vue](../Vue.js_Sample_Code/sample-app/src/components/Directive.vue)
+サンプルコード：[Directive.vue](../Vue.js_Sample_Code/sample-app-vue3/src/components/Directive.vue)
 
 ## ディレクティブとは
 
@@ -79,7 +79,8 @@
   - イベント修飾子`.stop`イベント修飾子をつけることで同じ機能となる
     ```html
     <p @mousemove="changeMouseposition($event, 100)">
-      この部分にマウスをのせるとマウスの座標軸を100倍した値を取得します。<span @mousemove.stop
+      この部分にマウスをのせるとマウスの座標軸を100倍した値を取得します。<span
+        @mousemove.stop
         >この部分はマウスをのせても何も反応しません</span
       >
     </p>
@@ -114,8 +115,14 @@
 
   ```html
   <label><input type="checkbox" v-model="userInfo.request" />入会希望</label>
-  <label><input type="checkbox" v-model="userInfo.request" />メルマガ希望</label>
-  <label><input type="checkbox" v-model="userInfo.request" />どちらも希望しない</label>
+  <label>
+    <input type="checkbox" v-model="userInfo.request" />
+    メルマガ希望
+  </label>
+  <label>
+    <input type="checkbox" v-model="userInfo.request" />
+    どちらも希望しない
+  </label>
   ```
 
 - セレクトボックス複数の場合`select`要素に対して`v-model`をつける
@@ -138,7 +145,12 @@
 
 - テキストエリアの場合`textarea`要素に対して`v-model`をつける
   ```html
-  <textarea id="message" cols="30" rows="10" v-model="userInfo.message"></textarea>
+  <textarea
+    id="message"
+    cols="30"
+    rows="10"
+    v-model="userInfo.message"
+  ></textarea>
   ```
 
 > 参考： [v-model](https://v2.ja.vuejs.org/v2/api/?#v-model)
