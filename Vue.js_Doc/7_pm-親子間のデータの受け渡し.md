@@ -1,6 +1,6 @@
 # 親と子の間でのデータの受け渡し
 
-サンプルコード：[DataDelivery.vue](../Vue.js_Sample_Code/sample-app/src/components/DataDelivery.vue)
+サンプルコード：[DataDelivery.vue](../Vue.js_Sample_Code/sample-app-vue3/src/components/DataDelivery.vue)
 
 ## 親と子の間でのデータの受け渡しはなぜ必要か？
 
@@ -23,12 +23,11 @@
 - 仕様としては、親コンポーネントのデータを受け渡し、子コンポーネントで表示する
 
   ```typescript
-  import { Vue, Component, Prop } from "vue-property-decorator";
-
-  @Component
-  export default class DataDelivery extends Vue {
-    @Prop() navItem!: string;
-  }
+  export default {
+    props: {
+      navItem: String,
+    },
+  };
   ```
 
 - 親の DOM テンプレートに`v-bind`した属性として設定する
@@ -38,9 +37,14 @@
   ```
 
   ```typescript
-  export default class App extends Vue {
-    nav: string[] = ["Works", "About", "Contact"];
-  }
+  export default {
+    setup() {
+      const nav: string[] = ["Works", "About", "Contact"];
+      return {
+        nav,
+      };
+    },
+  };
   ```
 
   > `navItem`としても動作する
@@ -66,14 +70,21 @@
 他のリアクティブなデータと同じように参照して使うことができる
 
 ```typescript
-export default class DataDelivery extends Vue {
-  @Prop() navItem!: string;
+import { computed } from "vue";
 
-  //computed
-  get navItemUpperCase() {
-    return this.navItem.toUpperCase();
-  }
-}
+export default {
+  props: {
+    navItem: String,
+  },
+  setup() {
+    const navItemUpperCase = computed(() => {
+      return navItem.value.toUpperCase();
+    });
+    return {
+      navItemUpperCase,
+    };
+  },
+};
 ```
 
 ```html
@@ -91,8 +102,10 @@ export default class DataDelivery extends Vue {
 - 子コンポーネント(データを使いたい側)で`Prop`を設定する
 
   ```typescript
-  @Prop() navItem!: string;
-  @Prop() navNumber!: number;
+  props: {
+    navItem: String,
+    navNumber: Number,
+  };
   ```
 
 - 子コンポーネントの DOM テンプレートで使う
@@ -114,7 +127,9 @@ export default class DataDelivery extends Vue {
 表面上の動きは子から親にデータを受け渡すように見える。
 実際は、子コンポーネントの好きなタイミングで親コンポーネントのメソッドを発火できるイメージ。
 
-- `$emit`はカスタムイベントを作ることができる
+- `setup` 関数は、第 2 引数に `context` を受け取ることができる
+- `context` には `emit` メソッドがある
+- `emit` はカスタムイベントを作ることができる
 - 子コンポーネントが親コンポーネントのデータを変えているわけではなく、親自身が変えている。(子コンポーネントにデータ自体は依存していない)
 - データは単一方向
 
@@ -132,10 +147,15 @@ export default class DataDelivery extends Vue {
   ```
 
   ```typescript
-  //@Emit('渡したい名前')
-  @Emit("change-msg")
-  changeMsg(): string {
-    return this.childMessage;
+  setup(props, context) {
+    const childMessage = ref('子コンポーネントでセットしたメッセージ');
+
+    const changeMsg = () => {
+      context.emit("change-msg", childMessage.value);
+    };
+    return {
+      changeMsg,
+    };
   }
   ```
 
@@ -144,7 +164,11 @@ export default class DataDelivery extends Vue {
   > $emit で受け取れる(イベントが発火される)
 
   ```html
-  <DataDelivery :nav-item="nav[0]" :nav-number="0" v-on:change-msg="handleClick($event)"></DataDelivery>
+  <DataDelivery
+    :nav-item="nav[0]"
+    :nav-number="0"
+    @change-msg="handleClick($event)"
+  ></DataDelivery>
   ```
 
   ```typescript
@@ -154,12 +178,12 @@ export default class DataDelivery extends Vue {
 
   ```
 
-  > `$emit`はカスタムイベントを作るもの。子コンポーネント`$emit`を作ることで、好きなタイミングで親コンポーネントのメソッドを発火できる。
+  > `emit`はカスタムイベントを作るもの。子コンポーネント`$emit`を作ることで、好きなタイミングで親コンポーネントのメソッドを発火できる。
   > データを送らなくてもよい。その場合、イベント発生時に親のメソッドを発火する。
   > 結果的にデータを送ることもできるので子コンポーネントから親コンポーネントへデータを送っているともいえる。(**渡しているが変えてはいない**)
   > 子コンポーネントが親のデータを変えているわけではなく、子コンポーネントのタイミングで親コンポーネントが変えている
 
-### なぜ$emit の場合複雑になっているか
+### なぜ $emit の場合複雑になっているか
 
 ---
 
