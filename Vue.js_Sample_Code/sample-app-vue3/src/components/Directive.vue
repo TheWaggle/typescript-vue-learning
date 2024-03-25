@@ -147,7 +147,7 @@
 </template>
 
 <script lang="ts">
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 
 export default {
   setup() {
@@ -163,13 +163,13 @@ export default {
     const increment = () => {
       num.value++
     }
-    const position = reactive({
+    const position = ref({
       x: 0,
       y: 0
     })
 
     // v-model
-    const userInfo = reactive({
+    const userInfo = ref({
       name: '',
       checked: false,
       request: [],
@@ -178,8 +178,8 @@ export default {
       message: ''
     })
     const changeMouseposition = ($event: MouseEvent, num: number) => {
-      position.x = $event.clientX * num
-      position.y = $event.clientY * num
+      position.value.x = $event.clientX * num
+      position.value.y = $event.clientY * num
     }
 
     // v-if

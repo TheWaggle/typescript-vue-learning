@@ -52,3 +52,71 @@ TypeScript を使用せず JavaScript で開発もできるため、開発規模
 理解があいまいな用語をしらべてまとめよう。
 
 > 特に仮想 DOM の理解が Vue の特性をとらえるポイントとなる
+
+## 2 つの API スタイル
+
+Vue コンポーネントを作成する際は、Options API、そして Composition API と呼ばれる 2 種類の異なる API スタイルが利用できる。
+
+### Options API
+
+Options API では、data、methods、mounted といった数々のオプションからなる 1 つのオブジェクトを用いてコンポーネントのロジックを定義する。それぞれのプロパティには、 コンポーネントインスタンス `this` を用いてアクセスできる。
+
+```ts
+<script>
+export default {
+  // data() で返すプロパティはリアクティブな状態になり、
+  // `this` 経由でアクセスすることができます。
+  data() {
+    return {
+      count: 0
+    }
+  },
+
+  // メソッドの中身は、状態を変化させ、更新をトリガーさせる関数です。
+  // 各メソッドは、テンプレート内のイベントハンドラーにバインドすることができます。
+  methods: {
+    increment() {
+      this.count++
+    }
+  },
+}
+</script>
+
+<template>
+  <button @click="increment">Count is: {{ count }}</button>
+</template>
+```
+
+### Composition API
+
+Composition API は、Vue 3 で導入された新しい API スタイルで、コンポーネントのロジックをより小さな関数に分割し、再利用可能なコードを作成することができる。Composition API では、インポートした各種 API 関数を使ってコンポーネントのロジックを定義していく。
+
+```ts
+<script>
+import { ref } from 'vue'
+
+export default {
+  setup() {
+    // ref() 関数を使ってリアクティブな状態を宣言
+    const count = ref(0)
+
+    // インクリメント関数を定義
+    const increment = () => {
+      count.value++
+    }
+
+    // インクリメント関数を返す
+    return {
+      count,
+      increment
+    }
+  }
+}
+</script>
+
+<template>
+  <button @click="increment">Count is: {{ count }}</button>
+</template>
+```
+
+`setup()` フックは、コンポーネントの初期化時に呼び出される関数で、コンポーネントのロジックを定義するために使用される特別な関数。

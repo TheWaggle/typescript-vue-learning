@@ -23,13 +23,13 @@
 
 ```typescript
 setup() {
-  const user = reactive({
+  const user = ref({
     lastName: "",
     firstName: "",
   });
   const bindName = computed(() => {
-    if (user.firstName && user.lastName) {
-      return user.lastName + user.firstName;
+    if (user.value.firstName && user.value.lastName) {
+      return user.value.lastName + user.value.firstName;
     }
     return "お名前を入力してください";
   });
@@ -55,13 +55,13 @@ setup() {
 
 ```typescript
 setup() {
-  const user = reactive({
+  const user = ref({
     lastName: "",
     firstName: "",
   });
   const bindNameMethod = () => {
-    if (user.firstName && user.lastName) {
-      return user.lastName + user.firstName;
+    if (user.value.firstName && user.value.lastName) {
+      return user.value.lastName + user.value.firstName;
     }
     return "お名前を入力してください";
   };
@@ -92,22 +92,25 @@ setup() {
 ```
 
 ```typescript
-//computed
-  get bindName(): string {
+setup() {
+  // computed
+  const bindName = computed((): string => {
     console.log("computed発動");
-    if (this.user.firstName && this.user.lastName) {
-      return this.user.lastName + this.user.firstName;
+    if (user.value.firstName && user.value.lastName) {
+      return user.value.lastName + user.value.firstName;
     }
     return "お名前を入力してください";
-  }
-  //method
-  bindNameMethod(): string {
+  });
+  // 通常関数
+  const bindNameMethod = (): string => {
     console.log("method発動");
-    if (this.user.firstName && this.user.lastName) {
-      return this.user.lastName + this.user.firstName;
+    if (user.value.firstName && user.value.lastName) {
+      return user.value.lastName + user.value.firstName;
     }
     return "お名前を入力してください";
-  }
+  };
+  //...
+}
 ```
 
 > computed はリアクティブな依存関係に基づきキャッシュされる
@@ -122,7 +125,7 @@ setup() {
 - データの変更に応じて必要な処理を行う場合に使用する
 - `computed`か`watch`かで迷った場合は`computed`を使うのがよい場合が多い
 
-> 参考： [watch](https://v2.ja.vuejs.org/v2/guide/computed.html#%E3%82%A6%E3%82%A9%E3%83%83%E3%83%81%E3%83%A3)
+> 参考： [watch](https://ja.vuejs.org/guide/essentials/watchers.html)
 
 ### computed と method で書いたコードを watch に置き換える
 
@@ -144,15 +147,27 @@ setup() {
 ```
 
 ```typescript
-  @Watch("user.firstName")
-  bindNameWatch(newValue: string, oldValue: string): void {
-    console.log(`watch:${newValue},${oldValue}`);
-    this.userName = this.user.lastName + newValue;
-  }
-  @Watch("user.lastName")
-  bindNameWatchL(newValue: string): void {
-    this.userName = newValue + this.user.firstName;
-  }
+setup() {
+  //...
+  const userName = ref("");
+  // watch
+  watch(
+    () => user.value.firstName,
+    (newValue: string, oldValue: string) => {
+      console.log(`watch:${newValue},${oldValue}`);
+      userName.value = user.value.lastName + newValue;
+    }
+  );
+
+  watch(
+    () => user.value.lastName,
+    (newValue: string) => {
+      userName.value = newValue + user.value.firstName;
+    }
+  );
+
+  return { user, bindName, bindNameMethod, userName };
+}
 ```
 
 > とても冗長なコードになる
@@ -170,9 +185,17 @@ setup() {
 ```
 
 ```typescript
-  @Watch("title")
-  titleWatch(newValue: string): void {
-    console.log(newValue);
-    this.error = newValue.length > 10 ? "10文字以内でお願いします！" : "";
-  }
+setup() {
+  const title = ref("");
+  const error = ref("");
+
+  watch(
+    () => title.value,
+    (newValue: string) => {
+      error.value = newValue.length > 10 ? "10文字以内でお願いします！" : "";
+    }
+  );
+
+  return { title, error };
+}
 ```

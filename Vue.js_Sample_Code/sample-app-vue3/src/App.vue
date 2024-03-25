@@ -4,6 +4,8 @@
     <h1>{{ msg }}</h1>
     <h1>ディレクティブ</h1>
     <Directive></Directive>
+    <h2>リアクティビティの基礎</h2>
+    <Reactivity></Reactivity>
     <h2>算出プロパティとウォッチャ</h2>
     <ComputedWatch></ComputedWatch>
     <h2>親子間のデータの受け渡し</h2>
@@ -19,12 +21,14 @@
 import Directive from './components/Directive.vue'
 import ComputedWatch from './components/ComputedWatch.vue'
 import DataDelivery from './components/DataDelivery.vue'
+import Reactivity from './components/Reactivity.vue'
 
 export default {
   components: {
     Directive,
     ComputedWatch,
-    DataDelivery
+    DataDelivery,
+    Reactivity
   },
   data() {
     return {

@@ -24,14 +24,14 @@
 </template>
 
 <script lang="ts">
-import { ref, computed, watch, reactive } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 const red = { color: 'red', fontSize: '20px' }
 
 export default {
   setup() {
     // data
-    const user = reactive({ lastName: '', firstName: '' })
+    const user = ref({ lastName: '', firstName: '' })
     const userName = ref('')
     const number = ref(0)
     const title = ref('')
@@ -39,32 +39,32 @@ export default {
 
     // computed
     const bindName = computed(() => {
-      if (user.firstName && user.lastName) {
-        return user.lastName + user.firstName
+      if (user.value.firstName && user.value.lastName) {
+        return user.value.lastName + user.value.firstName
       }
       return 'お名前を入力してください'
     })
 
     // method
     const bindNameMethod = () => {
-      if (user.firstName && user.lastName) {
-        return user.lastName + user.firstName
+      if (user.value.firstName && user.value.lastName) {
+        return user.value.lastName + user.value.firstName
       }
       return 'お名前を入力してください'
     }
 
     // watch
     watch(
-      () => user.firstName,
+      () => user.value.firstName,
       (newValue, oldValue) => {
         console.log(`watch:${newValue},${oldValue}`)
-        userName.value = user.lastName + newValue
+        userName.value = user.value.lastName + newValue
       }
     )
     watch(
-      () => user.lastName,
+      () => user.value.lastName,
       (newValue) => {
-        userName.value = newValue + user.firstName
+        userName.value = newValue + user.value.firstName
       }
     )
     watch(
