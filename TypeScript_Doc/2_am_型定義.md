@@ -300,31 +300,34 @@ lang.jpn = "日本語";
 関係する定数を束ねる
 
 ```typescript
-enum ename{name,...}
-//enum:列挙型の名前
-//name:定数
+enum EnumName {
+  ConstName = 1,
+  ...
+}
+// EnumName: 列挙型の名前
+// ConstName: 定数
 ```
 
 列挙子=値とすることで、列挙子に対して値を割り当てることも可能。
-`height='高い'`のように数値だけでなく文字列の割り当ても可能
+`High='高い'`のように数値だけでなく文字列の割り当ても可能
 
 ```typescript
 enum Priorities {
-  HIGH,
-  MIDDLE,
-  LOW,
+  High = 1,
+  Middle,
+  Low,
 }
 
-let p: Priorities = Priorities.HIGH;
-console.log(p); //結果：0
-console.log(Priorities[p]); //結果：HIGH
+let p: Priorities = Priorities.High;
+console.log(p); //結果： 1
+console.log(Priorities[p]); //結果： High
 
 enum Priorities2 {
-  HIGH = "高",
-  MIDDLE = "中",
-  LOW = "低",
+  High = "高",
+  Middle = "中",
+  Low = "低",
 }
-let p2: Priorities2 = Priorities2.HIGH;
+let p2: Priorities2 = Priorities2.High;
 console.log(p2); //結果：高
 console.log(Priorities2[p2]); //エラーとなる
 ```
@@ -348,9 +351,9 @@ let person: [string, number, boolean] = ["Miku", 68.92, true];
 console.log(person[0].substring(2)); //結果：ku
 console.log(person[1].toFixed(1)); //結果：68.9
 console.log(person[2].toFixed(1)); //エラー
-console.log(person[2] == false); //結果：true
+console.log(person[2] === false); //結果： false
 
-//タプルの濫用を避けるべき理由
+// 破壊的な配列操作を避けるべき理由
 let person2: [string, number, boolean] = ["Miku", 68.92, true];
 person2.shift(); //先頭の要素を削除
 console.log(person2[0].substring(2)); //実行時エラー
@@ -358,7 +361,7 @@ console.log(person2[0].substring(2)); //実行時エラー
 
 サンプルコード：[1_am_samplecode_8.ts](../TypeScript_Sample_Code/1_am_samplecode_8.ts)
 
-### タプルの濫用を避けるべき理由
+### 破壊的な配列操作を避けるべき理由
 
 配列 data の先頭を削除しても、データ型に反映されない。
 `person2[0]`は依然と`string`型とみなされる。コンパイルは通るが実行時エラーとなる。
