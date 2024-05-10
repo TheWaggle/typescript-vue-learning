@@ -1,18 +1,18 @@
 enum Priorities {
-  HIGH,
-  MIDDLE,
-  LOW,
+  High,
+  Middle,
+  Low,
 }
 
-let p: Priorities = Priorities.HIGH;
+let p: Priorities = Priorities.High;
 console.log(p);
 console.log(Priorities[p]);
 
 enum Priorities2 {
-  HIGH = "高",
-  MIDDLE = "中",
-  LOW = "低",
+  High = "高",
+  Middle = "中",
+  Low = "低",
 }
-let p2: Priorities2 = Priorities2.HIGH;
+let p2: Priorities2 = Priorities2.High;
 console.log(p2);
 console.log(Priorities2[p2]);
