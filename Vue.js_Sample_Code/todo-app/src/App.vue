@@ -1,3 +1,80 @@
+<script lang="ts">
+import { computed, defineComponent, ref, watch } from 'vue'
+import { type TodoItem } from '@/types/TodoItem'
+import { TodoState } from '@/types/TodoState'
+import TodoStorageService from '@/services/TodoStorageService'
+
+export default defineComponent({
+  setup() {
+    // services
+    const todoStorageService = new TodoStorageService()
+
+    // data
+    const current = ref(TodoState.None)
+    const labels = [
+      { id: TodoState.None, name: '全て' },
+      { id: TodoState.Working, name: '作業中' },
+      { id: TodoState.Done, name: '完了' }
+    ]
+    const todos = ref<TodoItem[]>([{ id: 1, name: '牛乳を買う', state: TodoState.Working }])
+
+    const newTodoName = ref('')
+
+    // computed
+    const filteredTodos = computed(() => {
+      return current.value === 0
+        ? todos.value
+        : todos.value.filter((todo) => todo.state === current.value)
+    })
+
+    // methods
+    const addTodo = () => {
+      if (!newTodoName.value) {
+        return
+      }
+      const todo: TodoItem = {
+        id: todoStorageService.nextId,
+        name: newTodoName.value,
+        state: TodoState.Working
+      }
+      todos.value.push(todo)
+      newTodoName.value = ''
+    }
+
+    const removeTodo = (todo: TodoItem) => {
+      todos.value = todos.value.filter((t) => t.id !== todo.id).map((t, i) => ({ ...t, id: i + 1 }))
+    }
+
+    const toggleState = (todo: TodoItem) => {
+      todo.state = todo.state === TodoState.Working ? TodoState.Done : TodoState.Working
+    }
+
+    // watch
+    watch(
+      todos,
+      (todos) => {
+        todoStorageService.save(todos)
+      },
+      { deep: true }
+    )
+
+    // Todoの初期化
+    todos.value = todoStorageService.fetchAll()
+
+    return {
+      current,
+      labels,
+      todos,
+      newTodoName,
+      addTodo,
+      removeTodo,
+      toggleState,
+      filteredTodos
+    }
+  }
+})
+</script>
+
 <template>
   <div id="app">
     <h1>Todo リスト</h1>
@@ -30,83 +107,17 @@
         </tr>
       </tbody>
     </table>
-    <p>※削除ボタンは〇〇〇を押しながらクリックしてください</p>
+    <p>※削除ボタンは SHIFT を押しながらクリックしてください</p>
     <h2>新しいタスクの追加</h2>
     <form class="add-item" @submit.prevent="addTodo">
       <label for="task">タスク内容</label>
-      <input type="text" id="task" ref="taskName" />
+      <input type="text" id="task" v-model="newTodoName" />
       <button type="submit">追加</button>
     </form>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue";
-import TodoStorage from "./todoStorage";
-import { State, TodoItem } from "./todoItem";
-
-const todoStorage = new TodoStorage();
-
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
-export default class App extends Vue {
-  todos: TodoItem[] = [];
-  labels = [
-    {
-      id: State.All,
-      name: "全て",
-    },
-    {
-      id: State.Working,
-      name: "作業中",
-    },
-    {
-      id: State.Done,
-      name: "完了",
-    },
-  ];
-  priorities: string[] = ["低", "中", "高"];
-  current: State = State.All;
-  get filteredTodos() {
-    return this.todos.filter((t) => {
-      return this.current === State.All ? true : this.current === t.state;
-    });
-  }
-  created() {
-    this.todos = todoStorage.fetchAll();
-  }
-  addTodo() {
-    const name = this.$refs.taskName as HTMLInputElement;
-    if (!name.value.length) {
-      return;
-    }
-    this.todos.push({
-      id: todoStorage.nextId,
-      name: name.value,
-      state: State.Working,
-    });
-    name.value = "";
-  }
-
-  removeTodo(todo: TodoItem) {
-    const index = this.todos.indexOf(todo);
-    this.todos.splice(index, 1);
-  }
-  toggleState(todo: TodoItem) {
-    todo.state = todo.state === State.Working ? State.Done : State.Working;
-  }
-  @Watch("todos", { deep: true })
-  private onTodoChanged(todos: TodoItem[]) {
-    todoStorage.save(todos);
-  }
-}
-</script>
-
-<style>
+<style scoped>
 * {
   box-sizing: border-box;
 }
