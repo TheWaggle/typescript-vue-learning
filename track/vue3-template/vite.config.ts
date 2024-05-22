@@ -12,12 +12,16 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
+  // ビルド設定 - 出力ファイルを指定することができる
   build: {
+    // build したファイルを public ディレクトリに出力する
     outDir: 'public',
     rollupOptions: {
       output: {
+        // JavaScript を public/index.js 1枚にまとめる
         entryFileNames: 'index.js',
         assetFileNames: (assetInfo) => {
+          // CSS を public/style.css にまとめる
           if (assetInfo.name?.endsWith('.css')) {
             return 'style.css'
           }
